@@ -2,7 +2,13 @@
 * The Mediocre media server
 */
 
-var lame = require("lame");
+var lame = require("lame"),
+    colors = require("colors"),
+    http = require("http");
+
+var log = function(message) {
+    console.log("mediocre > ".red + message);
+}
 
 var encoder = lame.Encoder({ channels: 2, bitDepth: 16, sampleRate: 44100 });
 encoder.on("data", function(data) {
@@ -29,6 +35,6 @@ var server = http.createServer(function(req, res){
     });
     // Add the response to the clients array to receive streaming
     clients.push(res);
-    console.log('Client connected; streaming');
+    log("client connected.");
 });
 server.listen("8000", "127.0.0.1");
