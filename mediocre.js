@@ -4,7 +4,8 @@
 
 var lame = require("lame"),
     colors = require("colors"),
-    http = require("http");
+    http = require("http"),
+    stream = require('./stream.js');
 
 var log = function(message) {
     console.log("mediocre > ".red + message);
@@ -38,3 +39,7 @@ var server = http.createServer(function(req, res){
     log("client connected.");
 });
 server.listen(1346);
+
+stream.playStream('http://rainwave.cc/tune_in/5.mp3', function(data) {
+    decoder.write(data);
+});
