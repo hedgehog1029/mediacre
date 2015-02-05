@@ -8,7 +8,7 @@ var lame = require("lame"),
     http = require("http"),
     fs = require("fs");
 
-var config = require("/.config.json");
+var config = require("./config.json");
 
 if (config.spotify) {
     var spotify = require('./spotify.js');
