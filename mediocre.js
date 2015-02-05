@@ -2,30 +2,24 @@
 * The Mediocre media server
 */
 
+//Requires & variables
 var lame = require("lame"),
     colors = require("colors"),
     http = require("http"),
-    fs = require("fs"),
-    sp = require("libspotify"),
-    stream = require('./stream.js');
+    fs = require("fs");
 
-var cred = require("./passwd"),
-    config = require("/.config.json");
+var config = require("/.config.json");
 
+if (config.spotify) {
+    var spotify = require('./spotify.js');
+}
+
+//Log function
 var log = function(message) {
     console.log("mediocre > ".red + message);
 }
 
-if (config.spotify) {
-    var session = new sp.Session({
-        applicationKey: './spotify_appkey.key'
-    });
-
-    session.login(cred.login, cred.password);
-    session.once("login", function() {
-        log("connected to spotify");
-    });
-}
+//Main code
 
 var encoder = lame.Encoder({ channels: 2, bitDepth: 16, sampleRate: 44100 });
 encoder.on("data", function(data) {
@@ -56,6 +50,19 @@ var server = http.createServer(function(req, res){
 server.listen(1346);
 log("listening on 0.0.0.0:1346");
 
+spotify.test(function(track, player) {
+    player.load(track);
+    player.play();
+    player.pipe(encoder);
+    log("playing track");
+
+    player.once("track-end", function() {
+        log("track ended");
+        player.stop();
+    });
+});
+
+/*
 var readStream = fs.createReadStream("./music.mp3");
 
 readStream.on("data", function(data) {
@@ -68,3 +75,4 @@ readStream.on("data", function(data) {
 decoder.on("drain", function() {
     readStream.resume();
 });
+*/
