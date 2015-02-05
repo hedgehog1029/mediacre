@@ -1,4 +1,4 @@
 {
-    spotify: false,
-    debug: true
+    "spotify": false,
+    "debug": true
 }
