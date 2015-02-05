@@ -5,6 +5,7 @@
 var lame = require("lame"),
     colors = require("colors"),
     http = require("http"),
+    fs = require("fs"),
     stream = require('./stream.js');
 
 var log = function(message) {
@@ -38,8 +39,10 @@ var server = http.createServer(function(req, res){
     log("client connected.");
 });
 server.listen(1346);
+log("listening on 0.0.0.0:1346");
 
-stream.playStream('http://rainwave.cc/tune_in/5.mp3', function(data) {
+var readStream = fs.createReadStream("./music.mp3");
+
+readStream.on("data", function(data) {
     decoder.write(data);
-    log("debug: wrote data");
 });
