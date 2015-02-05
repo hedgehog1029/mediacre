@@ -4,11 +4,16 @@
   "description": "An open-source media server, for playing music on different clients.",
   "main": "mediocre.js",
   "scripts": {
-    "test": "mediocre"
+    "test": "mediocre.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/hedgehog1029/mediocre.git"
+  },
+  "dependencies": {
+      "lame": "*",
+      "colors": "*",
+      "libspotify" "*"
   },
   "keywords": [
     "media"

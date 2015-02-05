@@ -6,10 +6,25 @@ var lame = require("lame"),
     colors = require("colors"),
     http = require("http"),
     fs = require("fs"),
+    sp = require("libspotify"),
     stream = require('./stream.js');
+
+var cred = require("./passwd"),
+    config = require("/.config.json");
 
 var log = function(message) {
     console.log("mediocre > ".red + message);
+}
+
+if (config.spotify) {
+    var session = new sp.Session({
+        applicationKey: './spotify_appkey.key'
+    });
+
+    session.login(cred.login, cred.password);
+    session.once("login", function() {
+        log("connected to spotify");
+    });
 }
 
 var encoder = lame.Encoder({ channels: 2, bitDepth: 16, sampleRate: 44100 });
