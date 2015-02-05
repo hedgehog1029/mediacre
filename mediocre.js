@@ -37,4 +37,4 @@ var server = http.createServer(function(req, res){
     clients.push(res);
     log("client connected.");
 });
-server.listen("8000", "127.0.0.1");
+server.listen(1346);

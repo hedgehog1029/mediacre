@@ -1,15 +1,11 @@
-var icecast = require('icecast'),
-lame = require('lame');
+var icecast = require('icecast');
 
-var decoder = lame.Decoder();
-decoder.on('format', function(format) {
-	decoder.pipe(stdout);
-});
+var exports = module.exports;
 
-var playStream = function(url, speaker) {
+exports.playStream = function(url, speaker) {
 	icecast.get(url, function(res) {
 		res.on('data', function(data) {
-			decoder.write(data);
+			return data;
 		});
 	});
 }
