@@ -31,8 +31,7 @@ function sendData(data) {
 
 var server = http.createServer(function(req, res){
     res.writeHead(200,{
-        "Content-Type": "audio/mpeg",
-        'Transfer-Encoding': 'chunked'
+        "Content-Type": "audio/mpeg"
     });
     // Add the response to the clients array to receive streaming
     clients.push(res);
