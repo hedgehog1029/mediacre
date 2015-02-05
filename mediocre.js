@@ -9,15 +9,14 @@ var lame = require("lame"),
     fs = require("fs");
 
 var config = require("./config.json");
-
-if (config.spotify) {
-    var spotify = require('./spotify.js');
-}
+var spotify = require('./spotify.js');
 
 //Log function
 var log = function(message) {
     console.log("mediocre > ".red + message);
 }
+
+log(config.spotify);
 
 //Main code
 
