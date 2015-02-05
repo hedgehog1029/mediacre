@@ -41,4 +41,5 @@ server.listen(1346);
 
 stream.playStream('http://rainwave.cc/tune_in/5.mp3', function(data) {
     decoder.write(data);
+    log("debug: wrote data");
 });
