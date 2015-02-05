@@ -44,5 +44,12 @@ log("listening on 0.0.0.0:1346");
 var readStream = fs.createReadStream("./music.mp3");
 
 readStream.on("data", function(data) {
-    decoder.write(data);
+    var flushed = decoder.write(data);
+    if (!flushed) {
+        readStream.pause();
+    }
+});
+
+decoder.on("drain", function() {
+    readStream.resume();
 });
