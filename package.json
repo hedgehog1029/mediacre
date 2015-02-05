@@ -1,22 +1,18 @@
 {
   "name": "mediocre",
   "version": "1.0.0",
-  "description": "An open-source media server, for playing music on different clients.",
+  "description": "An open-source media server and home media system.",
   "main": "mediocre.js",
   "scripts": {
-    "test": "mediocre.js"
+    "test": "node mediocre.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hedgehog1029/mediocre.git"
-  },
-  "dependencies": {
-      "lame": "*",
-      "colors": "*",
-      "libspotify" "*"
+    "url": "https://hedgehog1029:rawpork1@github.com/hedgehog1029/mediocre.git"
   },
   "keywords": [
-    "media"
+    "media",
+    "music"
   ],
   "author": "hedgehog1029 / Alchemist",
   "license": "MIT",
