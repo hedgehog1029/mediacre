@@ -48,9 +48,9 @@ server.listen(1346);
 log("media server listening on 0.0.0.0:1346");
 
 var reqServer = http.createServer(function(req, res) {
-    log("request connect");
-    res.writeHead(200, { "Content-Type": "text/plain" });
     var searchQuery = JSON.parse(JSON.stringify(url.parse(req.url, true)));
+    log("request connect, search query: " + searchQuery["query"]["search"]);
+    res.writeHead(200, { "Content-Type": "text/plain" });
     spotify.search(searchQuery["query"]["search"], 10, function(result) {
         res.end(result);
         log("search result: " + result);
