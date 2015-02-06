@@ -6,7 +6,8 @@
 var lame = require("lame"),
     colors = require("colors"),
     http = require("http"),
-    fs = require("fs");
+    fs = require("fs"),
+    url = require("url");
 
 var spotify = require('./lib/spotify.js');
 
@@ -44,7 +45,17 @@ var server = http.createServer(function(req, res){
     log("client connected.");
 });
 server.listen(1346);
-log("listening on 0.0.0.0:1346");
+log("media server listening on 0.0.0.0:1346");
+
+var reqServer = http.createServer(function(req, res) {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    var searchQuery = url.parse(req.url, true);
+    spotify.search(searchQuery["query"]["search"], 10, function(result) {
+        res.end(search);
+    });
+});
+server.listen(1347);
+log("request server listening on 0.0.0.0:1347");
 
 spotify.test(function(track, player) {
     player.load(track);
