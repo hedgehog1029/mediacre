@@ -8,15 +8,12 @@ var lame = require("lame"),
     http = require("http"),
     fs = require("fs");
 
-var config = require("./config.json");
 var spotify = require('./spotify.js');
 
 //Log function
 var log = function(message) {
     console.log("mediocre > ".red + message);
 }
-
-log(config.spotify);
 
 //Main code
 

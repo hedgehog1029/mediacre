@@ -1,4 +1,3 @@
-var cred = require('./passwd');
 var sp = require('libspotify'),
     colors = require("colors");
 
