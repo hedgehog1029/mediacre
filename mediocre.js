@@ -56,7 +56,7 @@ var reqServer = http.createServer(function(req, res) {
         log("search result: " + result);
     });
 });
-server.listen(1347);
+reqServer.listen(1347);
 log("request server listening on 0.0.0.0:1347");
 
 /*
