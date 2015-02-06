@@ -51,7 +51,7 @@ var reqServer = http.createServer(function(req, res) {
     res.writeHead(200, { "Content-Type": "text/plain" });
     var searchQuery = url.parse(req.url, true);
     spotify.search(searchQuery["query"]["search"], 10, function(result) {
-        res.end(search);
+        res.end(result);
     });
 });
 server.listen(1347);
