@@ -52,6 +52,7 @@ var reqServer = http.createServer(function(req, res) {
     log("request connect, search query: " + searchQuery["query"]["search"]);
     res.writeHead(200, { "Content-Type": "text/plain" });
     spotify.search(searchQuery["query"]["search"], 10, function(result) {
+        log("debug: the search query worked. result: " + result);
         res.end(result);
         log("search result: " + result);
     });
