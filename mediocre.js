@@ -57,6 +57,7 @@ var reqServer = http.createServer(function(req, res) {
 server.listen(1347);
 log("request server listening on 0.0.0.0:1347");
 
+/*
 spotify.test(function(track, player) {
     player.load(track);
     player.play();
@@ -69,7 +70,6 @@ spotify.test(function(track, player) {
     });
 });
 
-/*
 var readStream = fs.createReadStream("./music.mp3");
 
 readStream.on("data", function(data) {
