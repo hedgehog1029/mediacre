@@ -8,7 +8,7 @@ var lame = require("lame"),
     http = require("http"),
     fs = require("fs");
 
-var spotify = require('./spotify.js');
+var spotify = require('./lib/spotify.js');
 
 //Log function
 var log = function(message) {
