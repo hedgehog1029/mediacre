@@ -48,10 +48,33 @@ server.listen(1346);
 log("media server listening on 0.0.0.0:1346");
 
 var reqServer = http.createServer(function(req, res) {
+    var reqData = JSON.parse(JSON.stringify(url.parse(req.url, true)));
 
+    if (reqData["pathname"] == "/play") {
+        if (reqData["query"]["uri"]) {
+            spotify.getTrackFromUri(reqData["query"]["uri"], function(track) {
+                playTrack(track);
+            });
+    }
+
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("playing track via 0.0.0.0:1346");
 });
 reqServer.listen(1347);
 log("request server listening on 0.0.0.0:1347");
+
+function playTrack(track) {
+    var player = spotify.getPlayer();
+    player.load(track);
+    player.play();
+    player.pipe(encoder);
+    log("playing track");
+
+    player.once("track-end", function() {
+        log("track ended");
+        player.stop();
+    });
+}
 
 /*
 spotify.test(function(track, player) {
