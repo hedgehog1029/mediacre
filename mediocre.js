@@ -55,6 +55,7 @@ var reqServer = http.createServer(function(req, res) {
             spotify.getTrackFromUri(reqData["query"]["uri"], function(track) {
                 playTrack(track);
             });
+        }
     }
 
     res.writeHead(200, { "Content-Type": "text/plain" });
