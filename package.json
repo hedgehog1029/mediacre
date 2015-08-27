@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An open-source media server and home media system.",
   "main": "mediocre.js",
+  "bin": {
+      "mediocre": "./mediocre.js"
+  },
   "scripts": {
     "test": "node mediocre.js"
   },

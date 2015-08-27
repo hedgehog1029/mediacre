@@ -74,6 +74,7 @@ function playTrack(track) {
     player.once("track-end", function() {
         log("track ended");
         player.stop();
+		encoder.end();
     });
 }
 
